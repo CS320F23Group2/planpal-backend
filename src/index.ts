@@ -19,8 +19,11 @@ app.use(bodyParser.json());
 
 const server = http.createServer(app);
 
-server.listen(8080, () => {
-    console.log('Server running on http://localhost:8080/');
+const port = parseInt(process.env.PORT) || 8080;
+
+server.listen(port, () => {
+    //console.log('Server running on http://localhost:8080/');
+    console.log(`helloworld: listening on port ${port}`);
 });
 
 const MONGO_URL = 'mongodb+srv://anish:anish@cluster0.nki4sts.mongodb.net/?retryWrites=true&w=majority';
