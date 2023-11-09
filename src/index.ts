@@ -33,3 +33,5 @@ mongoose.connect(MONGO_URL);
 mongoose.connection.on('error', (error: Error) => console.log(error));
 
 app.use('/', router());
+
+//rubens was here
