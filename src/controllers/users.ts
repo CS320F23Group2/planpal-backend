@@ -1,6 +1,7 @@
 import express from 'express';
-
-import { deleteUserById, getUsers, getUserById } from '../db/users';
+import mongoose from 'mongoose';
+import { deleteUserById, getUsers, getUserById, UserModel} from '../db/users';
+import { createEvent } from '../db/events';
 
 export const getAllUsers = async (req: express.Request, res: express.Response) => {
     try {
@@ -42,6 +43,49 @@ export const updateUser = async (req: express.Request, res: express.Response) =>
 
         return res.status(200).json(user).end();
     } catch (error) {
+        console.log(error);
+        return res.sendStatus(400);
+    }
+}
+
+export const getEvents = async (req: express.Request, res: express.Response) => {
+   try
+    {
+    const { id } = req.params;
+
+    const user = await getUserById(id).populate('events');
+
+    return res.status(200).json(user).end();
+    } catch(error){
+        console.log(error);
+        return res.sendStatus(400);
+    }
+
+    
+
+
+}
+
+export const addEvent = async (req: express.Request, res: express.Response) => {
+    try{
+        const {id} = req.params; 
+        const {values} = req.body; 
+
+        if (!values){
+            return res.sendStatus(400);
+        }
+
+        const user = await getUserById(id);
+
+        const event = await createEvent(values); 
+
+        user.events.push(event._id); 
+
+        await user.save();
+
+        return res.status(200).json(user).end();
+
+    } catch(error){
         console.log(error);
         return res.sendStatus(400);
     }
