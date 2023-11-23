@@ -3,6 +3,9 @@
 ### Description
 This is the Backend for PlanPal, an application for Group 2's project for CS320 Section 2 Fall23.
 
+### Public Base Url: https://planpal-backend-xig7.onrender.com
+### Running Locally Base Url: http://localhost:8080
+
 ## Routes
 
 ### POST /auth/register
