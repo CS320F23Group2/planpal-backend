@@ -28,7 +28,7 @@ export const isAuthenticated = async (req: express.Request, res: express.Respons
 
 export const isOwner = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
     try {
-        const { id } = req.params;
+        const id = req.params.id;
         const currentUserId = get(req, 'identity._id') as string;
 
         if (!currentUserId) {

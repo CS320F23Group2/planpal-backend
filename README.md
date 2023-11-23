@@ -1,11 +1,7 @@
 # planpal-backend
 
-### TODO
-* Create Events Object and Schema
-* Create, Read, Update, and Delete Routes for Events
-* Create Calender Object and Schema
-* Create, Read, Update, and Delete Routes for Calender
-* Migrate to Prisma ORM (currently using mongoose, will change after first release)
+### Description
+This is the Backend for PlanPal, an application for Group 2's project for CS320 Section 2 Fall23.
 
 ## Routes
 
@@ -51,6 +47,22 @@ Requires json such as:
     "username": "johndoe"
 }
 ```
+
+### POST /events/:id
+
+
+
+### GET /events/:id
+
+
+
+### PATCH /events/:id/:eventId
+
+
+
+### DELETE /events/:id/:eventId
+
+
 
 ## File Structure
 
