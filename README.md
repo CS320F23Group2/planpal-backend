@@ -10,6 +10,9 @@ This is the Backend for PlanPal, an application for Group 2's project for CS320 
 
 ### POST /auth/register
 
+#### Description: 
+Register the user into the database
+
 Requires json such as:
 
 ```
@@ -37,6 +40,9 @@ Requires json such as:
 
 ### POST /auth/login
 
+#### Description: 
+Log in the user and give back a cookie and other things for browser storage
+
 Requires json such as:
 
 ```
@@ -63,6 +69,9 @@ Requires json such as:
 ```
 
 ### GET /users
+
+#### Description: 
+Get back all users in database
 
 Requires login session cookie
 
@@ -94,6 +103,9 @@ Requires login session cookie
 
 ### DELETE /users/:id
 
+#### Description: 
+Delete user from the database
+
 Requires login session cookie and user object id that matches
 
 #### Output:
@@ -108,6 +120,9 @@ Requires login session cookie and user object id that matches
 ```
 
 ### PATCH /users/:id
+
+#### Description: 
+CHange the user's username
 
 Requires login session cookie and user object id that matches
 
@@ -131,6 +146,9 @@ Requires json such as:
 ```
 
 ### POST /events/:id
+
+#### Description: 
+Create an event
 
 Requires login session cookie and user object id that matches the object id of the user that is logged in 
 
@@ -163,6 +181,9 @@ Requires json such as:
 ```
 
 ### GET /events/:id
+
+#### Description: 
+Get all of a user's events
 
 Requires login session cookie and user object id that matches the object id of the user that is logged in 
 
@@ -198,6 +219,9 @@ Requires login session cookie and user object id that matches the object id of t
 
 ### PATCH /events/:id/:eventId
 
+#### Description: 
+Changes a user's event details
+
 Requires login session cookie and user object id that matches the object id of the user that is logged in  and event object id that matches the object id of the event the user wishes to modify
 
 If you to not modify an field, then put "null" as the value
@@ -230,6 +254,9 @@ Requires json such as:
 ```
 
 ### DELETE /events/:id/:eventId
+
+#### Description: 
+Delete a user's event from database
 
 Requires login session cookie and user object id that matches the object id of the user that is logged in  and event object id that matches the object id of the event the user wishes to delete
 
