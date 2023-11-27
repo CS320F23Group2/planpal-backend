@@ -2,14 +2,14 @@ import mongoose from "mongoose";
 const { Schema, SchemaTypes, model } = mongoose; 
 
 const eventSchema = new Schema({
-    users: [{
+    user: {
         type: SchemaTypes.ObjectId,
         ref: 'User',
-    }],
+    },
     title: {
         type: String,
         lowercase: true,
-        unique: true,
+    
     },
     description: {
         type: String,

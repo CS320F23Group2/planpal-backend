@@ -1,7 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import { deleteUserById, getUsers, getUserById, UserModel} from '../db/users';
-import { createEvent } from '../db/events';
+import { createEvent, deleteEventById, updateEventById } from '../db/events';
 
 export const getAllUsers = async (req: express.Request, res: express.Response) => {
     try {
@@ -79,8 +79,10 @@ export const addEvent = async (req: express.Request, res: express.Response) => {
 
         const event = await createEvent(values); 
 
-        user.events.push(event._id); 
+        event.user = user._id 
 
+        user.events.push(event._id); 
+ 
         await user.save();
 
         return res.status(200).json(user).end();
@@ -88,5 +90,71 @@ export const addEvent = async (req: express.Request, res: express.Response) => {
     } catch(error){
         console.log(error);
         return res.sendStatus(400);
+    }
+}
+
+export const deleteEvent = async (req: express.Request, res: express.Response) => {
+    try
+    {
+    const {id} = req.params
+    const {eventId} = req.body
+
+    if (!eventId){
+        return res.sendStatus(400)
+    }
+
+    const user = await getUserById(id)
+
+    let indexToRemove = user.events.indexOf(eventId)
+
+    user.events.splice(indexToRemove, 1)
+
+    await deleteEventById(eventId)
+
+    await user.populate('events')
+
+    await user.save()
+
+    return res.status(200).json(user).end()
+
+} catch(error){
+    console.log(error)
+    return res.sendStatus(400)
+}
+}
+
+export const updateEvent = async (req: express.Request, res: express.Response) => {
+    try
+    {
+        const {id} = req.params
+        const {values} = req.body
+
+        if (!values){
+            return res.sendStatus(400)
+        }
+        
+        const user = await getUserById(id)
+
+        const eventid = values.id 
+
+        let indexToRemove = user.events.indexOf(eventid)
+
+        user.events.splice(indexToRemove, 1)
+
+        const event = await updateEventById(eventid, values)
+
+        await event.save()
+
+        user.events.push(eventid)
+
+        user.populate('events')
+
+        await user.save()
+
+        return res.sendStatus(200).json(user).end()
+
+    }catch(error){
+        console.log(error)
+        return res.sendStatus(400)
     }
 }
