@@ -26,10 +26,13 @@ server.listen(port, () => {
     console.log(`helloworld: listening on port ${port}`);
 });
 
+
+//This is the connection string to Mongo
 const MONGO_URL = 'mongodb+srv://anish:anish@cluster0.nki4sts.mongodb.net/?retryWrites=true&w=majority';
 
 mongoose.Promise = Promise;
 mongoose.connect(MONGO_URL);
 mongoose.connection.on('error', (error: Error) => console.log(error));
 
+//Base URL
 app.use('/', router());

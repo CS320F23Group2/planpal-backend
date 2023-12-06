@@ -5,6 +5,7 @@ import users from './users';
 
 const router = express.Router();
 
+//initializing middleware
 export default (): express.Router => {
   authentication(router);
   users(router);
