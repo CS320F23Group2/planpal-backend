@@ -28,6 +28,7 @@ server.listen(port, () => {
 
 
 //This is the connection string to Mongo
+//The mongo url is where our project is hosted on
 const MONGO_URL = 'mongodb+srv://anish:anish@cluster0.nki4sts.mongodb.net/?retryWrites=true&w=majority';
 
 mongoose.Promise = Promise;
