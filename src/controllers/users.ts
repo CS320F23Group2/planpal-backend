@@ -2,6 +2,7 @@ import express from 'express';
 
 import { deleteUserById, getUsers, getUserById } from '../db/users';
 
+//function that gets all the users
 export const getAllUsers = async (req: express.Request, res: express.Response) => {
     try {
         const users = await getUsers();
@@ -13,6 +14,7 @@ export const getAllUsers = async (req: express.Request, res: express.Response) =
     }
 };
 
+//function that deletes a user
 export const deleteUser = async (req: express.Request, res: express.Response) => {
     try {
         const { id } = req.params;
@@ -26,6 +28,7 @@ export const deleteUser = async (req: express.Request, res: express.Response) =>
     }
 }
 
+//function that updates the information of an existing user
 export const updateUser = async (req: express.Request, res: express.Response) => {
     try {
         const { id } = req.params;
